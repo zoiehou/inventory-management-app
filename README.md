@@ -45,7 +45,7 @@ It supports:
   - Docker Desktop (https://www.docker.com/products/docker-desktop/)
 
 2. Clone the Repository
-  - git clone https://github.com/YOUR_USERNAME/inventory-management-app.git
+  - git clone https://github.com/zoiehou/inventory-management-app.git
   - cd inventory-management-app
 
 3. Configure Environment
