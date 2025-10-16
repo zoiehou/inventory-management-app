@@ -1,7 +1,19 @@
+# Virtual environment
+.venv/
+env/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
 *$py.class
+*.pyc
+*.pyo
+*.pyd
+
+# SQLite or Postgres data files (if mounted locally)
+*.db
+*.sqlite3
+pg_data/
 
 # C extensions
 *.so
@@ -25,6 +37,25 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+
+# Streamlit
+.streamlit/
+.streamlit/cache/
+.streamlit/logs/
+.streamlit/secrets.toml
+.streamlit/config.toml
+
+# Alembic
+alembic/__pycache__/
+alembic/versions/__pycache__/
+alembic/versions/*.pyc
+
+# Docker
+*.log
+*.pid
+*.seed
+*.tar
+docker-compose.override.yml
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -205,3 +236,13 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
