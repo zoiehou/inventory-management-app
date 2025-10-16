@@ -1,0 +1,55 @@
+# --- Line endings ---
+# Normalize line endings for all text files to LF in repo
+* text=auto eol=lf
+
+# Keep Windows line endings for batch/shell scripts if needed
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# --- Language-specific handling ---
+# Python
+*.py text diff=python
+
+# Docker & related configs
+Dockerfile text
+*.dockerignore text
+*.env text
+*.yaml text
+*.yml text
+*.toml text
+*.ini text
+*.cfg text
+
+# --- Documentation & Markdown ---
+*.md text diff=markdown
+*.txt text
+*.rst text
+
+# --- Frontend (if any Streamlit frontend assets) ---
+*.js text diff=javascript
+*.ts text diff=typescript
+*.tsx text diff=typescript
+*.css text
+*.html text
+
+# --- Data & SQL ---
+*.sql text
+*.csv text
+*.json text
+
+# --- Images / binaries ---
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+
+# --- Misc ---
+*.db binary
+*.sqlite binary
+*.pkl binary
+
+# --- Ensure migrations are treated as text ---
+alembic/versions/*.py text diff=python

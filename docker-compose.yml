@@ -1,0 +1,61 @@
+services:
+  db:
+    image: postgres:15
+    container_name: inv-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: inventory
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+
+  web:
+    build: .
+    container_name: onramp_inventory_app
+    command: >
+      sh -c "
+      until pg_isready -h db -p 5432 -U postgres; do
+        echo 'Waiting for Postgres...';
+        sleep 2;
+      done;
+      alembic upgrade head &&
+      uvicorn app.main:app --host 0.0.0.0 --port 8000
+      "
+    depends_on:
+      - db
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+
+  streamlit:
+    build: .
+    container_name: onramp_inventory_streamlit
+    command: streamlit run app/streamlit_app.py --server.port 8501 --server.address 0.0.0.0
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=inventory
+    ports:
+      - "8501:8501"
+    depends_on:
+      - db
+    volumes:
+      - ./app:/app/app
+
+
+volumes:
+  postgres_data:
+  pgadmin_data:
