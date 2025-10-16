@@ -40,50 +40,24 @@ It supports:
 - Modular API endpoints ready for integration with external systems
 
 
-## Project Structure
-inventory-management-app/
-│
-├── app/
-│   ├── crud.py              # Database operations (CRUD logic)
-│   ├── db.py                # DB connection setup
-│   ├── main.py              # FastAPI backend entry point
-│   ├── models.py            # SQLAlchemy ORM models
-│   ├── schemas.py           # Pydantic schemas
-│   ├── streamlit_app.py     # Streamlit dashboard
-│   └── __init__.py
-│
-├── alembic/                 # Alembic migrations
-├── alembic.ini              # Alembic config
-├── docker-compose.yml       # Multi-container setup (FastAPI, Streamlit, PostgreSQL)
-├── Dockerfile               # Backend build file
-├── requirements.txt         # Python dependencies
-├── .env                     # Environment variables (excluded from Git)
-└── README.md
-
-
 ## Getting Started
-1️⃣ Prerequisites
+1. Prerequisites
+  - Docker Desktop (https://www.docker.com/products/docker-desktop/)
 
-Docker Desktop
+2. Clone the Repository
+  - git clone https://github.com/YOUR_USERNAME/inventory-management-app.git
+  - cd inventory-management-app
 
-2️⃣ Clone the Repository
-git clone https://github.com/YOUR_USERNAME/inventory-management-app.git
-cd inventory-management-app
+3. Configure Environment
+  - Create a .env file in the project root:
+  - DATABASE_URL=postgresql+psycopg2://postgres:postgres@db:5432/inventory
 
-3️⃣ Configure Environment
+4. Run the App
+  - docker compose up --build
 
-Create a .env file in the project root:
-
-DATABASE_URL=postgresql+psycopg2://postgres:postgres@db:5432/inventory
-
-4️⃣ Run the App
-docker compose up --build
-
-5️⃣ Access the Interfaces
-
-Streamlit Dashboard: http://localhost:8501
-
-FastAPI Docs: http://localhost:8000/docs
+5. Access the Interfaces
+  - Streamlit Dashboard: http://localhost:8501
+  - FastAPI Docs: http://localhost:8000/docs
 
 
 ## Future Improvements
