@@ -62,22 +62,28 @@ inventory-management-app/
 
 
 ## Getting Started
-1. Docker Desktop (https://www.docker.com/products/docker-desktop/)
+1️⃣ Prerequisites
 
-2. Clone the Repository
-  a. git clone https://github.com/YOUR_USERNAME/inventory-management-app.git
-  b. cd inventory-management-app
+Docker Desktop
 
-4. Configure Environment
-Create a .env file:
-_DATABASE_URL=postgresql+psycopg2://postgres:postgres@db:5432/inventory_
+2️⃣ Clone the Repository
+git clone https://github.com/YOUR_USERNAME/inventory-management-app.git
+cd inventory-management-app
 
-6. Run the App
-_docker compose up --build_
+3️⃣ Configure Environment
 
-7. Access the Interfaces
-  - Streamlit Dashboard: http://localhost:8501
-  - FastAPI Docs: http://localhost:8000/docs
+Create a .env file in the project root:
+
+DATABASE_URL=postgresql+psycopg2://postgres:postgres@db:5432/inventory
+
+4️⃣ Run the App
+docker compose up --build
+
+5️⃣ Access the Interfaces
+
+Streamlit Dashboard: http://localhost:8501
+
+FastAPI Docs: http://localhost:8000/docs
 
 
 ## Future Improvements
