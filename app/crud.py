@@ -18,7 +18,6 @@ def check_duplicate_parts(db: Session, part: schemas.PartCreate):
         .all()
     )
 
-
 def create_part(db: Session, part: schemas.PartCreate, force: bool = False):
     duplicates = check_duplicate_parts(db, part)
 
@@ -58,10 +57,7 @@ def create_location(db: Session, location: schemas.LocationCreate):
 def delete_location(db: Session, location_id: int):
     db.query(models.Location).filter(models.Location.id == location_id).delete()
     db.commit()
-
-
-#def get_inventory(db: Session):
-#    return db.query(models.Inventory).all()
+    
 
 def create_inventory(db: Session, inventory: schemas.InventoryCreate):
     # Check if inventory already exists
@@ -83,7 +79,6 @@ def create_inventory(db: Session, inventory: schemas.InventoryCreate):
     db.commit()
     db.refresh(current_inventory)
     return current_inventory
-
 
 def adjust_inventory(db: Session, part_id: int, location_id: int, quantity_change: int, version: int):
     inventory = (
@@ -121,7 +116,6 @@ def adjust_inventory(db: Session, part_id: int, location_id: int, quantity_chang
     db.refresh(inventory)
     return inventory
 
-
 def move_inventory(db: Session, part_id: int, from_location_id: int, to_location_id: int, quantity: int):
     # Decrease quantity from source location and increase at destination location
     source = db.query(models.Inventory).filter_by(part_id = part_id, location_id = from_location_id).first()
@@ -142,7 +136,6 @@ def move_inventory(db: Session, part_id: int, from_location_id: int, to_location
     db.commit()
     return {"from": source, "to": destination}
 
-
 def get_full_inventory(db: Session):
     results = (
         db.query(
@@ -162,7 +155,6 @@ def get_full_inventory(db: Session):
         .all()
     )
     return results
-
 
 def get_aggregated_inventory(db: Session):
     results = (
